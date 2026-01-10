@@ -31,7 +31,7 @@ public class AdjustedVelocityTest extends OpMode {
     public void loop() {
 
         // Run shooter at full power
-        shooter.setPower(0.1);
+        shooter.setPower(1.0);
 
         // Get encoder velocity (ticks per second)
         double ticksPerSecond = shooter.getVelocity();
@@ -42,9 +42,13 @@ public class AdjustedVelocityTest extends OpMode {
         // Convert to RPM
         double rpm = revsPerSecond * 60.0;
 
+
+
+
         // Telemetry output
         telemetry.addData("Ticks/sec", ticksPerSecond);
         telemetry.addData("RPM", rpm);
+        telemetry.addData("RPM from omega", shooter.getVelocity(AngleUnit.RADIANS) / (2 * Math.PI));
         telemetry.update();
     }
 }
